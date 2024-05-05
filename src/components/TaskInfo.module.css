@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2.3125rem 0 1.5625rem 0;
+}
+
+.container > div {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.container span {
+    font-size: 0.875rem;
+    font-weight: bold;
+}
+
+.container .createdSpan {
+    color: var(--blue);
+}
+
+.container .doneSpan {
+    color: var(--purple);
+}
+
+.container .badge {
+    font-size: 0.75rem;
+    background-color: var(--gray-400);
+    color: var(--gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    min-width: 1.5625rem;
+    line-height: normal;
+}

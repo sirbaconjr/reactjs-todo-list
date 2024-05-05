@@ -24,10 +24,19 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: antialiased;
 
+    background: var(--gray-600);
+
+    margin: 0;
+}
+
+p,
+div,
+input,
+span,
+button {
     font-family: "Inter", sans-serif;
     font-weight: 400;
     font-size: 0.875rem;
-
-    background: var(--gray-600);
+    line-height: 1.4;
     color: var(--gray-100);
 }

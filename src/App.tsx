@@ -1,8 +1,21 @@
+import { Header } from './components/Header'
+import { TaskInput } from './components/TaskInput'
+import styles from './App.module.css'
+import { TaskInfo } from './components/TaskInfo'
+import { Empty } from './components/Empty'
+
 export function App() {
 
   return (
     <>
-      <h1> Hello World</h1>
+      <main>
+        <Header />
+        <section className={styles.container}>
+          <TaskInput />
+          <TaskInfo />
+          <Empty />
+        </section>
+      </main>
     </>
   )
 }
