@@ -6,7 +6,18 @@ export interface Task {
     checked: boolean,
 }
 
-let tasks: Task[] = []
+let tasks: Task[] = [
+    {
+        id: uuidv4(),
+        title: "Teste",
+        checked: false
+    },
+    {
+        id: uuidv4(),
+        title: "Teste 2",
+        checked: true
+    }
+]
 
 export function createTask(title: string) {
     return {
