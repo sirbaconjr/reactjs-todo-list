@@ -6,23 +6,18 @@ export interface Task {
     checked: boolean,
 }
 
-const tasks = new Map<string, Task>();
+let localTasks = localStorage.getItem('tasks');
+let tasks: Map<string, Task>;
 
-const samples = [
-    {
-        id: uuidv4(),
-        title: "Teste",
-        checked: false
-    },
-    {
-        id: uuidv4(),
-        title: "Teste 2",
-        checked: true
-    }
-]
+try {
+    tasks = (localTasks === null) ? new Map<string, Task>() : new Map(JSON.parse(localTasks));
+} catch (e) {
+    tasks = new Map<string, Task>();
+    updateLocalStorage();
+}
 
-for (const sample of samples) {
-    tasks.set(sample.id, sample);
+function updateLocalStorage() {
+    localStorage.setItem('tasks', JSON.stringify([...tasks]))
 }
 
 export function createTask(title: string) {
@@ -33,6 +28,10 @@ export function createTask(title: string) {
     };
 
     tasks.set(task.id, task);
+
+    updateLocalStorage();
+
+    return task;
 }
 
 export function deleteTask(id: string) {
@@ -41,6 +40,8 @@ export function deleteTask(id: string) {
     }
 
     tasks.delete(id);
+
+    updateLocalStorage();
 }
 
 export function toggleTask(id: string) {
@@ -51,6 +52,8 @@ export function toggleTask(id: string) {
     const task = tasks.get(id)!;
 
     task.checked = !task.checked;
+
+    updateLocalStorage();
 }
 
 export function getTasks() {
