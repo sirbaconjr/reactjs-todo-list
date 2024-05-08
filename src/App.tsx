@@ -4,7 +4,7 @@ import styles from './App.module.css'
 import { TaskInfo } from './components/TaskInfo'
 import { Empty } from './components/Empty'
 import { useState } from 'react'
-import { Task, getTasks } from './services/TaskRepository'
+import { Task, getTasks, toggleTask } from './services/TaskRepository'
 import { TaskList } from './components/TaskList'
 
 export function App() {
@@ -15,6 +15,11 @@ export function App() {
     setTasks([...tasks, task])
   }
 
+  function handleTaskToggle(id: string) {
+    toggleTask(id)
+    setTasks(getTasks())
+  }
+
   return (
     <>
       <main>
@@ -22,7 +27,7 @@ export function App() {
         <section className={styles.container}>
           <TaskInput onSave={handleTaskSaved} />
           <TaskInfo total={tasks.length} checked={checked} />
-          { (tasks.length > 0) ? <TaskList tasks={tasks} /> : <Empty /> }
+          { (tasks.length > 0) ? <TaskList onTaskToggle={handleTaskToggle} tasks={tasks} /> : <Empty /> }
         </section>
       </main>
     </>

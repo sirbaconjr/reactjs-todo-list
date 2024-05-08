@@ -6,7 +6,9 @@ export interface Task {
     checked: boolean,
 }
 
-let tasks: Task[] = [
+const tasks = new Map<string, Task>();
+
+const samples = [
     {
         id: uuidv4(),
         title: "Teste",
@@ -19,14 +21,30 @@ let tasks: Task[] = [
     }
 ]
 
+for (const sample of samples) {
+    tasks.set(sample.id, sample);
+}
+
 export function createTask(title: string) {
-    return {
+    const task = {
         id: uuidv4(),
         title: title,
         checked: false
     };
+
+    tasks.set(task.id, task);
+}
+
+export function toggleTask(id:string) {
+    if (!tasks.has(id)) {
+        return;
+    }
+
+    const task = tasks.get(id)!;
+
+    task.checked = !task.checked;
 }
 
 export function getTasks() {
-    return tasks
+    return Array.from(tasks.values())
 }

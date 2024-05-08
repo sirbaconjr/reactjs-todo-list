@@ -3,10 +3,11 @@ import { Task } from "../services/TaskRepository"
 import styles from './TaskList.module.css'
 
 interface TaskListProps {
-    tasks: Task[]
+    tasks: Task[],
+    onTaskToggle: (id: string) => void
 }
 
-export function TaskList({ tasks }: TaskListProps)
+export function TaskList({ tasks, onTaskToggle }: TaskListProps)
 {
     return (
         <div className={styles.container}>
@@ -14,7 +15,7 @@ export function TaskList({ tasks }: TaskListProps)
                 return <div className={styles.task} key={task.id}>
                     <label>
                         <input type="checkbox"></input>
-                        <span className={`${styles.checkbox} ${task.checked && styles.checkboxChecked}`}>
+                        <span onClick={() => onTaskToggle(task.id)} className={`${styles.checkbox} ${task.checked && styles.checkboxChecked}`}>
                             {task.checked && <Check size={12} />}
                         </span>
 
