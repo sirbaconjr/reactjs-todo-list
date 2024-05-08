@@ -35,7 +35,15 @@ export function createTask(title: string) {
     tasks.set(task.id, task);
 }
 
-export function toggleTask(id:string) {
+export function deleteTask(id: string) {
+    if (!tasks.has(id)) {
+        return;
+    }
+
+    tasks.delete(id);
+}
+
+export function toggleTask(id: string) {
     if (!tasks.has(id)) {
         return;
     }

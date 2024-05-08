@@ -4,10 +4,11 @@ import styles from './TaskList.module.css'
 
 interface TaskListProps {
     tasks: Task[],
-    onTaskToggle: (id: string) => void
+    onTaskToggle: (id: string) => void,
+    onTaskDelete: (id: string) => void
 }
 
-export function TaskList({ tasks, onTaskToggle }: TaskListProps)
+export function TaskList({ tasks, onTaskToggle, onTaskDelete }: TaskListProps)
 {
     return (
         <div className={styles.container}>
@@ -24,7 +25,7 @@ export function TaskList({ tasks, onTaskToggle }: TaskListProps)
                         </p>
                     </label>
                     
-                    <button><Trash size={14} /></button>
+                    <button><Trash onClick={() => onTaskDelete(task.id)} size={14} /></button>
                 </div>
             })}
         </div>
