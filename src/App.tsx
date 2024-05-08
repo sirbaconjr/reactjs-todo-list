@@ -9,6 +9,7 @@ import { TaskList } from './components/TaskList'
 
 export function App() {
   const [tasks, setTasks] = useState<Task[]>(getTasks());
+  const checked = tasks.reduce((prev, curr) => { return prev + (curr.checked ? 1 : 0) }, 0)
 
   function handleTaskSaved(task: Task) {
     setTasks([...tasks, task])
@@ -20,7 +21,7 @@ export function App() {
         <Header />
         <section className={styles.container}>
           <TaskInput onSave={handleTaskSaved} />
-          <TaskInfo />
+          <TaskInfo total={tasks.length} checked={checked} />
           { (tasks.length > 0) ? <TaskList tasks={tasks} /> : <Empty /> }
         </section>
       </main>
